@@ -1,21 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+html,
+body {
+  height: -webkit-fill-available;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    @apply overflow-hidden overscroll-y-contain min-h-full scrollbar:!hidden;
+  }
+  body {
+    @apply text-tg-text-color bg-tg-secondary-bg-color;
+    @apply overflow-x-hidden overscroll-y-contain min-h-full scrollbar:!hidden;
+  }
+  main {
+    height: var(--tg-viewport-height, 100dvh);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .scrollbar {
+    @apply scrollbar:!w-0 scrollbar:!hidden scrollbar:!h-1.5 scrollbar:bg-transparent;
+    @apply scrollbar-thumb:!border-0;
+  }
+  .visually-hidden {
+    @apply !w-px !h-px !p-0 !-mt-px !overflow-hidden !whitespace-nowrap !border-0;
+    clip: rect(0, 0, 0, 0) !important;
+  }
+  .siblings-col-span-2 ~ span {
+    grid-column: span 2 / span 2;
+  }
 }
