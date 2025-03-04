@@ -1,6 +1,7 @@
 import { useEffect } from "react";
+
 import { mainButton } from "@telegram-apps/sdk-react";
-import { ButtonState } from "../interfraces/telegram-interfaces";
+import { ButtonState } from "../types/telegram-interfaces";
 
 export const useTelegramMainButton = (
   updates: Partial<ButtonState>,

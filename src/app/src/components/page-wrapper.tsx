@@ -34,10 +34,5 @@ export default function PageWrapper({
     };
   }, [back, router]);
 
-  return (
-    <main className="p-2">
-      <div style={{ height: "100px" }}></div>
-      {children}
-    </main>
-  );
+  return <main className="p-2">{children}</main>;
 }

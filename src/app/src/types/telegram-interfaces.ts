@@ -1,4 +1,5 @@
 import { RGB } from "@telegram-apps/bridge";
+
 export interface ButtonState {
   backgroundColor?: RGB;
   hasShineEffect: boolean;

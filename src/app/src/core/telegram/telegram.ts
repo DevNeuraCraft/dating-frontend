@@ -41,14 +41,14 @@ export default async function TelegramSDK() {
     // Монтируем главноую кнопку в интерфейс
     mainButton.mount();
 
-    if (viewport.mount.isAvailable()) {
-      await viewport.mount();
-      viewport.expand(); // first it would be better to expand
-    }
+    // if (viewport.mount.isAvailable()) {
+    //   await viewport.mount();
+    //   viewport.expand(); // first it would be better to expand
+    // }
 
-    if (viewport.requestFullscreen.isAvailable()) {
-      await viewport.requestFullscreen(); // then request full screen mode
-    }
+    // if (viewport.requestFullscreen.isAvailable()) {
+    //   await viewport.requestFullscreen(); // then request full screen mode
+    // }
     // Проверяем, поддерживается ли кнопка "Настройки" в текущем окружении.
     // Если да, монтируем (отображаем) кнопку "Настройки" в интерфейсе.
     if (settingsButton.isSupported()) {

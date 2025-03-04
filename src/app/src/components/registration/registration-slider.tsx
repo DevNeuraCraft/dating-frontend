@@ -1,15 +1,29 @@
-import { useRef, useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { Swiper as SwiperType } from "swiper";
-import RegistrationSlideContainter from "./registration-slide-container";
-import style from "./registration-slider.module.css";
-import { useTelegramMainButton } from "../../utils/telegram-ui";
-import { backButton, mainButton } from "@telegram-apps/sdk-react";
-import { swiperConfig } from "../../utils/swiper-comfig";
-import { useSwiperInit } from "../../hooks/use-swiper-init";
-import RegistartionForm from "./registration-form";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function RegistrationSlider() {
+import RegistartionForm from "@components/registration/registration-form";
+import MediaForm from "@components/registration/registration-media.form";
+import RegistrationSlideContainter from "@components/registration/registration-slide-container";
+import { backButton, mainButton, popup } from "@telegram-apps/sdk-react";
+import { City } from "../../types/data-interfaces";
+
+import { swiperConfig } from "@utils/swiper-comfig";
+import { useTelegramMainButton } from "@utils/telegram-ui";
+import { UseRegistrationFormReturnType } from "@hooks/use-form";
+import { useSwiperInit } from "@hooks/use-swiper-init";
+
+import style from "@components/registration/registration-slider.module.css";
+
+interface RegistrationSliderProps {
+  cities: City[];
+  form: UseRegistrationFormReturnType;
+}
+
+export default function RegistrationSlider({
+  cities,
+  form,
+}: RegistrationSliderProps) {
   useTelegramMainButton({ isVisible: true, text: "Продолжить" });
 
   const swiperRef = useRef<SwiperType | null>(null);
@@ -18,11 +32,23 @@ export default function RegistrationSlider() {
   const [isEnd, setIsEnd] = useState(false);
   useSwiperInit(swiperRef, paginationRef);
 
-  const handleNext = () => {
-    if (swiperRef.current) {
+  const handleNext = useCallback(() => {
+    if (swiperRef.current && form.validateForm()) {
       swiperRef.current.slideNext();
     }
-  };
+  }, [form]);
+
+  const hadleRegister = useCallback(() => {
+    console.log(form.validateImages());
+    if (!form.validateImages()) {
+      if (!popup.isOpened())
+        popup.open({
+          title: "Загрузи три фото",
+          message: "asd",
+          buttons: [{ id: "my-id", type: "default", text: "Default text" }],
+        });
+    }
+  }, [form]);
 
   const handlePrev = () => {
     if (swiperRef.current) {
@@ -47,24 +73,24 @@ export default function RegistrationSlider() {
   useEffect(() => {
     if (isBeginning) {
       mainButton.onClick(handleNext);
+      mainButton.offClick(hadleRegister);
     } else {
       mainButton.offClick(handleNext);
+      mainButton.onClick(hadleRegister);
     }
 
     return () => {
       mainButton.offClick(handleNext);
     };
-  }, [isBeginning]);
+  }, [hadleRegister, handleNext, isBeginning]);
 
   return (
     <>
-      {/* Контейнер для пагинации */}
       <div
         ref={paginationRef}
         className={`${style.paginationContainer} flex-row justify-between flex gap-2`}
       ></div>
 
-      {/* Swiper */}
       <Swiper
         {...swiperConfig}
         onSwiper={(swiper) => {
@@ -79,12 +105,15 @@ export default function RegistrationSlider() {
       >
         <SwiperSlide className="h-auto">
           <RegistrationSlideContainter title="Создание профиля">
-            <RegistartionForm/>
+            <RegistartionForm cities={cities} form={form} />
           </RegistrationSlideContainter>
         </SwiperSlide>
         <SwiperSlide className="h-auto">
-          <RegistrationSlideContainter title="Добавление фото">
-            <p className="text-tg-text-color">Контент 2</p>
+          <RegistrationSlideContainter title="Фотографии профиля">
+            <MediaForm
+              handleImageChange={form.handleImageChange}
+              images={form.images}
+            />
           </RegistrationSlideContainter>
         </SwiperSlide>
       </Swiper>
