@@ -14,6 +14,7 @@ import { UseRegistrationFormReturnType } from "@hooks/use-form";
 import { useSwiperInit } from "@hooks/use-swiper-init";
 
 import style from "@components/registration/registration-slider.module.css";
+import { uploadData } from "../../utils/api/upload-data";
 
 interface RegistrationSliderProps {
   cities: City[];
@@ -38,8 +39,7 @@ export default function RegistrationSlider({
     }
   }, [form]);
 
-  const hadleRegister = useCallback(() => {
-    console.log(form.validateImages());
+  const hadleRegister = useCallback(async () => {
     if (!form.validateImages()) {
       if (!popup.isOpened())
         popup.open({
@@ -47,7 +47,9 @@ export default function RegistrationSlider({
           message: "asd",
           buttons: [{ id: "my-id", type: "default", text: "Default text" }],
         });
+        return;
     }
+    await uploadData(form.formState, form.images as File[])
   }, [form]);
 
   const handlePrev = () => {
@@ -81,6 +83,7 @@ export default function RegistrationSlider({
 
     return () => {
       mainButton.offClick(handleNext);
+      mainButton.offClick(hadleRegister);
     };
   }, [hadleRegister, handleNext, isBeginning]);
 
