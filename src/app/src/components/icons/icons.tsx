@@ -1,6 +1,7 @@
 import { faCircle } from "@awesome.me/kit-7090d2ba88/icons/classic/regular";
 import {
   faCircleCheck,
+  faHeart,
   faPlus,
 } from "@awesome.me/kit-7090d2ba88/icons/classic/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,4 +20,8 @@ export const circle = () => (
 
 export const plus = () => (
   <FontAwesomeIcon icon={faPlus} size="xl" className="text-tg-text-color" />
+);
+
+export const heart = () => (
+  <FontAwesomeIcon icon={faHeart} size="xs" className="text-tg-text-color" />
 );
