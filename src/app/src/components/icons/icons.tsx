@@ -23,5 +23,8 @@ export const plus = () => (
 );
 
 export const heart = () => (
-  <FontAwesomeIcon icon={faHeart} size="xs" className="text-tg-text-color" />
+  <FontAwesomeIcon
+    icon={faHeart}
+    className="text-tg-subtitle-text-color h-16 heart-beat "
+  />
 );
