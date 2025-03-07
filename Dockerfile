@@ -1,5 +1,5 @@
 # Используем официальный образ Node.js на основе Alpine Linux
-FROM node:16-alpine AS builder
+FROM node:latest AS builder
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Используем официальный образ Node.js на основе Alpine Linux для production
-FROM node:16-alpine AS production
+FROM node:latest AS production
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
