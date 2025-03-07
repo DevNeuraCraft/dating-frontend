@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Копируем package.json и package-lock.json (если есть)
 COPY package*.json ./
+COPY .npmrc ./
 
 # Устанавливаем зависимости
 RUN npm install
