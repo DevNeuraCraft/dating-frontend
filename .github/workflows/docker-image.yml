@@ -26,7 +26,7 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: ghcr.io/DevNeuraCraft/dating-forntend
-          workdir: dating-frontend
+          workdir: .
           dockerfile: Dockerfile
           tags: latest
           username: ${{ github.actor }}
