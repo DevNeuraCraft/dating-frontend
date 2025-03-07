@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -17,12 +17,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Checkout porduction code
+      - name: Checkout main code
         uses: actions/checkout@v2
         with:
-          ref: porduction
+          ref: main
 
-      - name: Build and Publish porduction to Github Packages Registry
+      - name: Build and Publish main to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: ghcr.io/DevNeuraCraft/dating-forntend
