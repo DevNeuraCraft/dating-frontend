@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios, { Method } from "axios";
+import { BackendTypes } from "../../types/data-interfaces";
 
-import { EndpointMapping } from "../../types/endpoint-map-type";
-
-export const fetchData = async <T extends keyof EndpointMapping>(
-  url: T
-): Promise<EndpointMapping[T]> => {
+export const fetchData = async <T extends BackendTypes | BackendTypes[]>(
+  url: string,
+  method: Method,
+  params?: Record<string, string | number>
+): Promise<T> => {
   try {
-    const response = await axios.get<EndpointMapping[T]>(url);
-    console.log(response);
+    const response = await axios<T>({ method: method, url: url, params });
     return response.data;
   } catch (error) {
     console.error(`Responde error ${error}`);

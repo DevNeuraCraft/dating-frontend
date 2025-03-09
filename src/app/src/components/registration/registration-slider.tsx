@@ -9,7 +9,7 @@ import { backButton, mainButton, popup } from "@telegram-apps/sdk-react";
 import { City } from "../../types/data-interfaces";
 
 import { swiperConfig } from "@utils/swiper-comfig";
-import { useTelegramMainButton } from "@utils/telegram-ui";
+import { useTelegramMainButton } from "@/app/src/utils/telegram";
 import { UseRegistrationFormReturnType } from "@hooks/use-form";
 import { useSwiperInit } from "@hooks/use-swiper-init";
 

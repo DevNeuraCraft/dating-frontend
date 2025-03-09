@@ -5,4 +5,4 @@ export enum AppRoute {
   HEART_BEAT = "/heart-beat/",
 }
 
-export const productionMode = !true;
+export const productionMode = true;

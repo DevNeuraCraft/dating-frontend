@@ -5,8 +5,8 @@ import RegistrationSlider from "@components/registration/registration-slider";
 import { City } from "../../types/data-interfaces";
 
 import { fetchData } from "@utils/api/fetch-data";
-import { ENDPOINTS } from "@utils/endpoints";
-import { useRegistrationForm } from "../../hooks/use-form";
+import { ENDPOINTS, METHODS } from "@utils/endpoints";
+import { useRegistrationForm } from "@hooks/use-form";
 
 export default function Registration() {
   const [cities, setCitites] = useState<City[]>([]);
@@ -15,7 +15,7 @@ export default function Registration() {
   useEffect(() => {
     (async () => {
       try {
-        setCitites(await fetchData(ENDPOINTS.BACKEND.CITY));
+        setCitites(await fetchData<City[]>(ENDPOINTS.BACKEND.CITIES, METHODS.GET));
       } catch (error) {
         console.error(error);
       }

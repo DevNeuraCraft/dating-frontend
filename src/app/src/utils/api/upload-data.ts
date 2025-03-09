@@ -1,19 +1,16 @@
 import axios from "axios";
 import { AxiosError } from "axios";
 
-import { initDataUser } from "@telegram-apps/sdk-react";
 import { RegistrationUserForm } from "../../types/client-interfaces";
 import { UserResponse } from "../../types/data-interfaces";
 import { ENDPOINTS } from "../endpoints";
+import { getTelegramUserData } from "../telegram";
 
 export const uploadData = async (
   fromData: RegistrationUserForm,
   images: File[]
 ): Promise<UserResponse> => {
-  const user = initDataUser();
-  if (!user) {
-    throw new Error("Пользователь не определён");
-  }
+  const user = getTelegramUserData()
 
   const formData = new FormData();
 
@@ -33,11 +30,9 @@ export const uploadData = async (
     }
   });
 
-  console.log("Данные формы:", Array.from(formData.entries()));
-
   try {
     const response = await axios.post<UserResponse>(
-      ENDPOINTS.BACKEND.USER,
+      ENDPOINTS.BACKEND.USER.BASE,
       formData
     );
     return response.data;

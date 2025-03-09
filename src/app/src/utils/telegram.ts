@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { mainButton } from "@telegram-apps/sdk-react";
+import { initDataUser, mainButton, User } from "@telegram-apps/sdk-react";
 import { ButtonState } from "../types/telegram-interfaces";
 
 export const useTelegramMainButton = (
@@ -25,4 +25,12 @@ export const useTelegramMainButton = (
       mainButton.setParams({});
     };
   }, [onClick, updates]);
+};
+
+export const getTelegramUserData = (): User => {
+  const user = initDataUser();
+  if (!user) {
+    throw new Error("Пользователь не определён");
+  }
+  return user
 };
