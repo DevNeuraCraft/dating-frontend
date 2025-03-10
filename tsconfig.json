@@ -28,7 +28,8 @@
       "@utils/*": ["./src/app/src/utils/*"],
       "@core/*": ["./src/app/src/core/*"],
       "@public/*": ["./public/*"],
-      "@app/*": ["./src/app/*"]
+      "@app/*": ["./src/app/*"],
+      "@styles/*": ["./src/app/styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

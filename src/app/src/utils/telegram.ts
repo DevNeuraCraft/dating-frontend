@@ -22,7 +22,6 @@ export const useTelegramMainButton = (
       if (onClick) {
         mainButton.offClick(onClick);
       }
-      mainButton.setParams({});
     };
   }, [onClick, updates]);
 };
@@ -32,5 +31,5 @@ export const getTelegramUserData = (): User => {
   if (!user) {
     throw new Error("Пользователь не определён");
   }
-  return user
+  return user;
 };

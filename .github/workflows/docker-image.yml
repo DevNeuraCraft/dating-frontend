@@ -25,7 +25,7 @@ jobs:
       - name: Build and Publish main to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ghcr.io/DevNeuraCraft/dating-forntend
+          name: ghcr.io/DevNeuraCraft/dating-frontend
           workdir: .
           dockerfile: Dockerfile
           tags: latest
@@ -36,7 +36,7 @@ jobs:
       - name: Send Telegram Notification
         if: success()
         run: |
-          MESSAGE="✅ Backend успешно собран и загружен в Github Packages."
+          MESSAGE="✅ Dating frontend успешно собран и загружен в Github Packages."
           TELEGRAM_BOT_TOKEN="7674748078:AAGpdQpgGIeYewOQkDG1qP7CjkgLgXujUoY"
           TELEGRAM_CHAT_ID="6366591506"
 

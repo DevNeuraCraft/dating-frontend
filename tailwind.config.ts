@@ -10,6 +10,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        menu: {
+          edit: "#9932CC",
+          filters: "#1E90FF",
+          likes: "#DC143C",
+        },
         orange: "#f8a917",
         tg: {
           "bg-color": "rgb(var(--tg-theme-bg-color))",

@@ -1,20 +1,23 @@
 import { useRef, useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import RegistartionForm from "@components/registration/registration-form";
 import MediaForm from "@components/registration/registration-media.form";
 import RegistrationSlideContainter from "@components/registration/registration-slide-container";
+import { swiperRegistrationConfig } from "@/app/src/utils/swiper-configs";
+import { useTelegramMainButton } from "@/app/src/utils/telegram";
 import { backButton, mainButton, popup } from "@telegram-apps/sdk-react";
 import { City } from "../../types/data-interfaces";
 
-import { swiperConfig } from "@utils/swiper-comfig";
-import { useTelegramMainButton } from "@/app/src/utils/telegram";
+import { uploadData } from "../../utils/api/upload-data";
+import { AppRoute } from "@utils/consts";
+import userStore from "@store/user-store";
 import { UseRegistrationFormReturnType } from "@hooks/use-form";
 import { useSwiperInit } from "@hooks/use-swiper-init";
 
 import style from "@components/registration/registration-slider.module.css";
-import { uploadData } from "../../utils/api/upload-data";
 
 interface RegistrationSliderProps {
   cities: City[];
@@ -25,6 +28,8 @@ export default function RegistrationSlider({
   cities,
   form,
 }: RegistrationSliderProps) {
+  const router = useRouter();
+  const { setUser } = userStore();
   useTelegramMainButton({ isVisible: true, text: "Продолжить" });
 
   const swiperRef = useRef<SwiperType | null>(null);
@@ -47,10 +52,17 @@ export default function RegistrationSlider({
           message: "asd",
           buttons: [{ id: "my-id", type: "default", text: "Default text" }],
         });
-        return;
+      return;
     }
-    await uploadData(form.formState, form.images as File[])
-  }, [form]);
+    try {
+      const { user } = await uploadData(form.formState, form.images as File[]);
+      setUser(user);
+      mainButton.setParams({ isVisible: false });
+      router.push(AppRoute.EXPLORE);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [form, router, setUser]);
 
   const handlePrev = () => {
     if (swiperRef.current) {
@@ -95,7 +107,7 @@ export default function RegistrationSlider({
       ></div>
 
       <Swiper
-        {...swiperConfig}
+        {...swiperRegistrationConfig}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
           setIsBeginning(swiper.isBeginning);

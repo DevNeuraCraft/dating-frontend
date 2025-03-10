@@ -20,12 +20,6 @@ export default function Media({
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const onFormClick = () => {
-    if (input.current) {
-      input.current.click();
-    }
-  };
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
@@ -59,11 +53,11 @@ export default function Media({
   return (
     <div
       className={clsx(
-        "h-full w-full bg-tg-section-bg-color flex justify-center",
+        "bg-tg-section-bg-color flex justify-center",
         "items-center cursor-pointer hover:bg-tg-hover-color transition-colors",
         classes
       )}
-      onClick={onFormClick}
+      onClick={() => input.current?.click()}
       role="button"
       aria-label="Выбрать изображение"
       tabIndex={0}
@@ -80,7 +74,7 @@ export default function Media({
         <img
           src={previewUrl}
           alt="Превью выбранного изображения"
-          className={clsx("w-full h-full object-cover", classes)}
+          className={clsx("w-full h-full object-cover object-center", classes)}
         />
       ) : (
         plus()

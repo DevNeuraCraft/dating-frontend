@@ -1,19 +1,19 @@
 "use client";
-
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { backButton } from "@telegram-apps/sdk-react";
+import BottomBar from "./bottom-bar/bottom.bar";
 
 export default function PageWrapper({
   children,
   // hideTitle = false,
-  // hideTabBar = false,
+  hideTabBar = false,
   back = true,
 }: React.PropsWithChildren<{
   className?: string;
   // hideTitle?: boolean;
-  // hideTabBar?: boolean;
+  hideTabBar?: boolean;
   removePadding?: boolean;
   back?: boolean;
 }>) {
@@ -34,5 +34,10 @@ export default function PageWrapper({
     };
   }, [back, router]);
 
-  return <main className="p-2">{children}</main>;
+  return (
+    <main>
+      <div className="p-2">{children}</div>
+      {!hideTabBar && <BottomBar />}
+    </main>
+  );
 }

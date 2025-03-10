@@ -1,0 +1,8 @@
+.profile-swiper .swiper-pagination-bullet {
+    @apply w-6 h-1 bg-white opacity-50 transition-all rounded-full;
+  }
+  
+  /* Активная точка — увеличенная и более яркая */
+  .profile-swiper  .swiper-pagination-bullet-active {
+    @apply w-8 bg-tg-button-color opacity-100;
+  }

@@ -1,13 +1,16 @@
 @import 'swiper/css';
 @import 'swiper/css/pagination';
+@import '@styles/swiper-bullet.css';
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 
+
 html,
 body {
   height: -webkit-fill-available;
+  overscroll-behavior-y: contain;
 }
 
 @layer base {

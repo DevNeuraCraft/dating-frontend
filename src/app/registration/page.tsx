@@ -3,7 +3,7 @@ import Registration from "../src/components/registration/registration";
 
 const Page = () => {
   return (
-    <PageWrapper back={false}>
+    <PageWrapper back={false} hideTabBar>
       <Registration />
     </PageWrapper>
   );

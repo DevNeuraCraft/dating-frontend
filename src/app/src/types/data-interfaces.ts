@@ -1,3 +1,4 @@
+
 export interface City {
   _id: string;
   name: string;
@@ -21,4 +22,8 @@ export interface UserResponse {
   user: User | null;
 }
 
-export type BackendTypes = City | UserResponse;
+export interface ExploresResponse {
+  explore: User[];
+}
+
+export type BackendTypes = City | UserResponse | ExploresResponse;

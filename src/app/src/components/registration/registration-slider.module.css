@@ -1,13 +1,13 @@
 .paginationContainer :global(.swiper-pagination-bullet) {
-    height: 2.5px;
-    flex: 1;
-    background-color: rgb(var(--tg-theme-hint-color));
-    border-radius: 5px;
-    cursor: pointer;
-    transition: opacity 0.3s ease, background-color 0.3s ease; /* Плавные переходы */
-  }
+  height: 2.5px;
+  flex: 1;
+  background-color: rgb(var(--tg-theme-hint-color));
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background-color 0.3s ease; /* Плавные переходы */
+}
   
-  .paginationContainer :global(.swiper-pagination-bullet-active) {
-    background-color: rgb(var(--tg-theme-text-color)); /* Цвет активной точки */
-    opacity: 1;
-  }
+.paginationContainer :global(.swiper-pagination-bullet-active) {
+  background-color: rgb(var(--tg-theme-text-color)); /* Цвет активной точки */
+  opacity: 1;
+}
