@@ -1,4 +1,3 @@
-
 interface ProfileDescriptionProps {
   name: string;
   age: number;
@@ -17,8 +16,10 @@ export default function ProfileDescription({
           {name}, {age}
         </p>
       </div>
-      <div className="bg-tg-section-bg-color flex flex-col p-2 rounded-xl ">
-        <p className="text-tg-text-color text-sm px-1 leading-4">{about}</p>
+      <div className="bg-tg-section-bg-color flex flex-col p-2 rounded-xl">
+        <p className="text-tg-text-color text-sm px-1 leading-4 break-all">
+          {about}
+        </p>
       </div>
     </div>
   );

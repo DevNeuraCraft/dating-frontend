@@ -1,4 +1,3 @@
-
 export enum AppRoute {
   REGISTRATION = "/registration",
   NOT_FOUND = "/not-found",
@@ -16,6 +15,11 @@ export enum ProfileMenuButtonTitle {
   EDIT_PROFILE = "Редактировать профиль",
   FILTERS = "Фильтры",
   LIKES = "Лайки",
+}
+
+export enum ExploreCardButtonType {
+  ACCEPT = "accept",
+  REJECT = "reject",
 }
 
 export const productionMode = true;

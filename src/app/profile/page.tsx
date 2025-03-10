@@ -5,7 +5,7 @@ import Profile from "@components/profile/profile";
 
 export default function Page() {
   return (
-    <PageWrapper>
+    <PageWrapper back={false}>
       <Profile />
     </PageWrapper>
   );

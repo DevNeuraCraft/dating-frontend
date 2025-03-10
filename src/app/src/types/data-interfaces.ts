@@ -1,4 +1,3 @@
-
 export interface City {
   _id: string;
   name: string;
@@ -23,7 +22,7 @@ export interface UserResponse {
 }
 
 export interface ExploresResponse {
-  explore: User[];
+  explores: User[];
 }
 
 export type BackendTypes = City | UserResponse | ExploresResponse;

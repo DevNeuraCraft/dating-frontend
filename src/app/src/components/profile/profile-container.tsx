@@ -1,4 +1,4 @@
-import ProfileDescription from "@components/profile/prfole-description";
+import ProfileDescription from "@/app/src/components/profile/profile-description";
 import ProfileMenu from "@components/profile/profile-menu";
 import ProfileSlider from "@components/profile/profile-slider";
 import { User } from "../../types/data-interfaces";

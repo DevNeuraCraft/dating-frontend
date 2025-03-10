@@ -1,3 +1,4 @@
+import { faLocationDot } from "@awesome.me/kit-7090d2ba88/icons/classic/light";
 import {
   faCircle,
   faSliders,
@@ -51,3 +52,10 @@ export const pen = () => <FontAwesomeIcon icon={faPen} color="white" />;
 export const sliders = () => <FontAwesomeIcon icon={faSliders} color="white" />;
 
 export const likes = () => <FontAwesomeIcon icon={faHeart} color="white" />;
+
+export const location = () => (
+  <FontAwesomeIcon
+    icon={faLocationDot}
+    className="text-tg-subtitle-text-color"
+  />
+);
