@@ -1,4 +1,6 @@
-import { location } from "@icons/icons";
+import Icon from "@icons/icons";
+
+import { IconDefinition } from "@utils/consts";
 
 interface ExploreCardDescriptionProps {
   name: string;
@@ -20,7 +22,10 @@ export default function ExploreCardDescription({
       </p>
       <div className="flex gap-2 flex-col text-tg-subtitle-text-color text-lg leading-tight">
         <p className="flex gap-2 items-center">
-          {location()}
+          {Icon({
+            iconDefinition: IconDefinition.LOCATION_DOT,
+            classes: "text-tg-subtitle-text-color",
+          })}
           {city}
         </p>
         <p className="break-all">{about}</p>

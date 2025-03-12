@@ -1,13 +1,16 @@
 import React, { useEffect, useCallback } from "react";
-import exploresStore from "@store/explores-store";
+
 import ExploreCardCollection from "@components/explore/explore-card-collection";
-import { fetchData } from "@utils/api/fetch-data";
 import { ExploresResponse } from "../../types/data-interfaces";
+
+import { fetchData } from "@utils/api/fetch-data";
 import { ENDPOINTS, METHODS } from "@utils/endpoints";
+import exploresStore from "@store/explores-store";
 import userStore from "@store/user-store";
 
 export default function Explore() {
-  const { explores, setExplores, loading, setLoading } = exploresStore();
+  const { explores, setExplores, loading, setLoading, removeExplore } =
+    exploresStore();
   const { user } = userStore();
 
   const fetchExplores = useCallback(async () => {
@@ -37,5 +40,11 @@ export default function Explore() {
     return <div>Loading...</div>;
   }
 
-  return <ExploreCardCollection explores={explores} />;
+  return (
+    <ExploreCardCollection
+      explores={explores}
+      removeExplore={removeExplore}
+      currentUserId={user?._id}
+    />
+  );
 }

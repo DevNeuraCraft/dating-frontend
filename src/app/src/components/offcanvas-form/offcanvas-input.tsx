@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 
-import { faCircleChevronUp } from "@awesome.me/kit-7090d2ba88/icons/classic/solid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Icon from "@components/icons/icons";
+
+import { IconDefinition } from "@utils/consts";
 
 interface OffcanvasInputProps {
   toggleOpen: Dispatch<SetStateAction<boolean>>;
@@ -33,10 +34,10 @@ export default function OffcanvasInput({
       <span>{title}</span>
       <span className="text-tg-button-color flex items-center gap-2">
         {value || "Выбрать"}
-        <FontAwesomeIcon
-          icon={faCircleChevronUp}
-          className="text-tg-button-color"
-        />
+        {Icon({
+          iconDefinition: IconDefinition.CHEVRON_CIRCLE,
+          classes: "text-tg-button-color",
+        })}
       </span>
     </div>
   );

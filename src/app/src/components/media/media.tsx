@@ -1,7 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
 
-import { plus } from "@icons/icons";
+import Icon from "@icons/icons";
+
+import { IconDefinition } from "@utils/consts";
 
 interface MediaProps {
   classes?: string;
@@ -77,7 +79,11 @@ export default function Media({
           className={clsx("w-full h-full object-cover object-center", classes)}
         />
       ) : (
-        plus()
+        Icon({
+          iconDefinition: IconDefinition.PLUS,
+          size: "xl",
+          classes: "text-tg-text-color",
+        })
       )}
     </div>
   );

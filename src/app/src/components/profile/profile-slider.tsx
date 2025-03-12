@@ -13,7 +13,7 @@ export default function ProfileSlider({ imagesUrl }: ProfileSliderProps) {
     <div className="profile-swiper">
       <Swiper {...swiperProfileConfig}>
         {imagesUrl.map((imageUrl, index) => (
-          <SwiperSlide className="h-[15rem]" key={index}>
+          <SwiperSlide className="max-xs-h:h-[12rem] h-[15rem]" key={index}>
             <ProfileImageSlide imageUrl={imageUrl} />
           </SwiperSlide>
         ))}

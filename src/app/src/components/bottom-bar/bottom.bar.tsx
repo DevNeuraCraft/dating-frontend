@@ -1,9 +1,8 @@
 import { usePathname } from "next/navigation";
 
 import BottomBarButton from "@components/bottom-bar/bottom-bar-button";
-import { cards, profile } from "@icons/icons";
 
-import { AppRoute, TabBarButton } from "@utils/consts";
+import { AppRoute, IconDefinition, TabBarButton } from "@utils/consts";
 
 export default function BottomBar() {
   const pathName = usePathname();
@@ -12,13 +11,13 @@ export default function BottomBar() {
       <BottomBarButton
         href={AppRoute.EXPLORE}
         title={TabBarButton.EXPLORE}
-        icon={cards}
+        icon={IconDefinition.CARDS}
         currentRoute={pathName}
       />
       <BottomBarButton
         href={AppRoute.PROFILE}
         title={TabBarButton.PROFILE}
-        icon={profile}
+        icon={IconDefinition.PROFILE}
         currentRoute={pathName}
       />
     </div>

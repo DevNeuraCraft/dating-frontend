@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "592px",
+      },
       colors: {
         menu: {
           edit: "#9932CC",
@@ -56,6 +59,7 @@ export default {
       addVariant("scrollbar", "&::-webkit-scrollbar");
       addVariant("scrollbar-track", "&::-webkit-scrollbar-track");
       addVariant("scrollbar-thumb", "&::-webkit-scrollbar-thumb");
+      addVariant("max-xs-h", "@media (max-height: 600px)");
     },
   ],
 } satisfies Config;

@@ -8,16 +8,16 @@ export default function ExploreCardMediaContainer({
   mediasUrl,
 }: ExploreCardMediaContainerProps) {
   return (
-    <div className="grid grid-cols-2 h-[441px] gap-px">
+    <div className="grid grid-cols-2 h-[441px] max-xs-h:h-[301px] md:h-[441px] gap-px">
       <ExploreCardMedia mediaUrl={mediasUrl[0]} classes="rounded-s-xl" />
       <div className="grid gap-px">
         <ExploreCardMedia
           mediaUrl={mediasUrl[1]}
-          classes="h-[220px] rounded-tr-xl"
+          classes="max-xs-h:h-[150px] h-[220px] rounded-tr-xl"
         />
         <ExploreCardMedia
           mediaUrl={mediasUrl[2]}
-          classes="h-[220px] rounded-br-xl"
+          classes="max-xs-h:h-[150px] h-[220px] rounded-br-xl"
         />
       </div>
     </div>
