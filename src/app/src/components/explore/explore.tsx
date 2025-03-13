@@ -7,6 +7,7 @@ import { fetchData } from "@utils/api/fetch-data";
 import { ENDPOINTS, METHODS } from "@utils/endpoints";
 import exploresStore from "@store/explores-store";
 import userStore from "@store/user-store";
+import Loading from "@components/loading/loading";
 
 export default function Explore() {
   const { explores, setExplores, loading, setLoading, removeExplore } =
@@ -37,7 +38,7 @@ export default function Explore() {
   }, [explores.length, user, fetchExplores]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

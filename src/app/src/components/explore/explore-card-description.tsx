@@ -28,7 +28,7 @@ export default function ExploreCardDescription({
           })}
           {city}
         </p>
-        <p className="break-all">{about}</p>
+        <p className="break-all max-xs-h:text-xs">{about}</p>
       </div>
     </div>
   );

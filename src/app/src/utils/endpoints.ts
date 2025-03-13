@@ -2,7 +2,7 @@ export const TG_BOT_NAME = "maiuniversity_schedule_bot";
 export const TG_CHANNEL_NAME = "maiuniversity_schedule";
 export const TG_MINI_APP_NAME = "mai_schedule_app";
 export const API_BACKEND_URL =
-  process.env.API_BACKEND_URL || "http://192.168.0.176:3030/api";
+  process.env.API_BACKEND_URL || "http://172.20.10.4:3030/api";
 
 export enum METHODS {
   GET = "GET",
