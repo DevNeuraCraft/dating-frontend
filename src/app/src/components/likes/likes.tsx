@@ -53,7 +53,7 @@ export default function Likes() {
   if (loading && swipes.length === 0) return <Loading />;
 
   return (
-    <div className="grid gap-2 pb-2">
+    <div className="grid gap-2 pb-8">
       <LikesContainer swipes={swipes} />
       <LikesLoadingButton onClick={setNextPage} loading={loading} />
     </div>

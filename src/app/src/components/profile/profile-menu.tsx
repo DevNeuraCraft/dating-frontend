@@ -10,6 +10,7 @@ export default function ProfileMenu() {
   return (
     <div className="mt-4 grid gap-2 pt-2">
       <ProfileMenuButton
+        href={AppRoute.EDIT_PROFILE}
         icon={IconDefinition.PEN}
         iconBackgroundColor="bg-menu-edit"
         title={ProfileMenuButtonTitle.EDIT_PROFILE}

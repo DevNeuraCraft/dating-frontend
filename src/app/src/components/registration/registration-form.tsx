@@ -27,7 +27,7 @@ export default function RegistartionForm({
   };
 
   useEffect(() => {
-    mainButton.setParams({ isVisible: !isOffcanvasOpen });
+    mainButton.setParams({ isVisible: !isOffcanvasOpen, text: "Продолжить" });
 
     if (isOffcanvasOpen) {
       backButton.show();

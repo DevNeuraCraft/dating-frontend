@@ -1,3 +1,4 @@
+import { mainButton } from "@telegram-apps/sdk-react";
 import { useEffect, RefObject } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { PaginationOptions } from "swiper/types";
@@ -20,5 +21,9 @@ export const useSwiperInit = (
         swiper.pagination.update();
       }
     }
+
+    return () => {
+      mainButton.setParams({ isVisible: false });
+    };
   }, [swiperRef, paginationRef]);
 };

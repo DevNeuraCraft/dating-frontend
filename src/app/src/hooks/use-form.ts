@@ -27,14 +27,16 @@ export interface UseRegistrationFormReturnType {
   validateImages: () => boolean;
 }
 
-export function useRegistrationForm(): UseRegistrationFormReturnType {
+export function useRegistrationForm(
+  initForm?: RegistrationUserForm
+): UseRegistrationFormReturnType {
   const isSubmitted = useRef<boolean>(false);
   const initialState = useRef<RegistrationUserForm>({
-    name: "",
-    about: "",
-    birthYear: 0,
-    city: "",
-    gender: "male",
+    name: initForm?.name || "",
+    about: initForm?.about || "",
+    birthYear: initForm?.birthYear || 0,
+    city: initForm?.city || "",
+    gender: initForm?.gender || "male",
   });
 
   const [formState, setFormState] = useState<RegistrationUserForm>(

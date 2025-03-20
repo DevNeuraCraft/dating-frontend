@@ -24,6 +24,7 @@ export enum AppRoute {
   EXPLORE = "/",
   PROFILE = "/profile",
   LIKES = "/likes",
+  EDIT_PROFILE = "/edit",
 }
 
 export enum TabBarButton {

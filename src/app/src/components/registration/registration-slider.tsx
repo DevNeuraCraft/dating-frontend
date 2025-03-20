@@ -96,6 +96,7 @@ export default function RegistrationSlider({
     return () => {
       mainButton.offClick(handleNext);
       mainButton.offClick(hadleRegister);
+      
     };
   }, [hadleRegister, handleNext, isBeginning]);
 
