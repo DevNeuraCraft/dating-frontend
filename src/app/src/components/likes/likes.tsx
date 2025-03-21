@@ -9,6 +9,7 @@ import { fetchData } from "@utils/api/fetch-data";
 import { ENDPOINTS, METHODS } from "@utils/endpoints";
 import userStore from "@store/user-store";
 import LikesLoadingButton from "./likes-loading-button";
+import NoLikes from "./no-likes";
 
 export default function Likes() {
   const { user } = userStore();
@@ -51,6 +52,9 @@ export default function Likes() {
   }, [fetchSwipes, page]);
 
   if (loading && swipes.length === 0) return <Loading />;
+
+  if (!loading && swipes.length === 0)
+    return <NoLikes/>
 
   return (
     <div className="grid gap-2 pb-8">

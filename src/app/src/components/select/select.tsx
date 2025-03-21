@@ -3,7 +3,7 @@ import clsx from "clsx";
 interface SelectProps {
   optionList: string[] | number[];
   defaultOptionTitle: string;
-  defaultValue: string | number;
+  defaultValue?: string | number;
   name: string;
   error?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -13,6 +13,7 @@ export default function Select({
   optionList,
   defaultOptionTitle,
   name,
+  defaultValue = "",
   onChange,
   error = false,
 }: SelectProps) {
@@ -25,7 +26,7 @@ export default function Select({
         error ? "ring-1 ring-red-500" : ""
       )}
     >
-      <option value="">{defaultOptionTitle}</option>
+      <option value={defaultValue}>{defaultOptionTitle}</option>
       {optionList.map((option, index) => (
         <option value={option} key={index}>
           {option}

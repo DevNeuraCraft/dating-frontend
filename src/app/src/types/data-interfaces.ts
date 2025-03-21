@@ -16,6 +16,7 @@ export interface User {
   name: string;
   about: string;
   age: number;
+  gender: "male" | "female";
   city: string;
 }
 

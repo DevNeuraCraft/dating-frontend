@@ -8,7 +8,7 @@ import { IconDefinition } from "@utils/consts";
 interface MediaProps {
   classes?: string;
   index: number;
-  image: File | null;
+  image: File | string | null;
   handleImageChange: (index: number, file: File) => void;
 }
 
@@ -19,7 +19,7 @@ export default function Media({
   image,
 }: MediaProps) {
   const input = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<File | string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,13 +43,13 @@ export default function Media({
   }, [image]);
 
   useEffect(() => {
-    if (file) {
+    if (file instanceof File) {
       const objectUrl = URL.createObjectURL(file);
       setPreviewUrl(objectUrl);
       return () => URL.revokeObjectURL(objectUrl);
-    } else {
-      setPreviewUrl(null);
-    }
+    } else if (typeof file === "string") {
+      setPreviewUrl(file);
+    } else setPreviewUrl(null);
   }, [file]);
 
   return (

@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 export default function Edit() {
   const { user } = userStore();
   const [cities, setCitites] = useState<City[]>([]);
-  const form = useRegistrationForm();
+  const form = useRegistrationForm(user || undefined);
 
   useEffect(() => {
     (async () => {

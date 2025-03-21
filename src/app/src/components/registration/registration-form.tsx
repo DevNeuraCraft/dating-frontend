@@ -6,7 +6,7 @@ import OffcanvasInput from "@components/offcanvas-form/offcanvas-input";
 import RadioButton from "@components/radio/radio";
 import Select from "@components/select/select";
 import { backButton, mainButton } from "@telegram-apps/sdk-react";
-import { City } from "../../types/data-interfaces";
+import { City } from "@app/src/types/data-interfaces";
 
 import { getYears } from "@utils/get-year-list";
 import { UseRegistrationFormReturnType } from "@hooks/use-form";
@@ -14,11 +14,13 @@ import { UseRegistrationFormReturnType } from "@hooks/use-form";
 interface RegistartionFormProps {
   cities: City[];
   form: UseRegistrationFormReturnType;
+  disableToggleBackbutton?: boolean;
 }
 
 export default function RegistartionForm({
   cities,
   form,
+  disableToggleBackbutton = false,
 }: RegistartionFormProps) {
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState<boolean>(false);
 
@@ -33,12 +35,12 @@ export default function RegistartionForm({
       backButton.show();
       backButton.onClick(toggleOffCanvas);
     } else {
-      backButton.hide();
+      if (!disableToggleBackbutton) backButton.hide();
     }
     return () => {
       backButton.offClick(toggleOffCanvas);
     };
-  }, [isOffcanvasOpen]);
+  }, [disableToggleBackbutton, isOffcanvasOpen]);
 
   return (
     <>
@@ -74,7 +76,7 @@ export default function RegistartionForm({
               onChange={form.handleNumberInputChange}
               name="birthYear"
               defaultOptionTitle="Год рождения"
-              defaultValue={0}
+              defaultValue={form.formState.birthYear}
               optionList={getYears()}
               error={form.errors.birthYear}
             />

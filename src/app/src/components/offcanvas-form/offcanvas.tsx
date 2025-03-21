@@ -63,7 +63,7 @@ export default function Offcanvas({
   return (
     <div
       ref={offcanvasRef}
-      className="fixed inset-0 z-50 bg-tg-secondary-bg-color transition-opacity duration-300"
+      className="fixed inset-0 z-50 bg-tg-secondary-bg-color transition-opacity duration-300 p-2"
       style={{ visibility: "hidden", opacity: 0 }}
     >
       <div className="pt-4">

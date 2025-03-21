@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 
 import { RegistrationUserForm } from "../types/client-interfaces";
+import { User } from "../types/data-interfaces";
 
 interface FormErrors {
   name?: boolean;
@@ -12,7 +13,7 @@ interface FormErrors {
 export interface UseRegistrationFormReturnType {
   errors: FormErrors;
   formState: RegistrationUserForm;
-  images: (File | null)[];
+  images: (File | string | null)[];
   handleInputChange: (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -28,21 +29,23 @@ export interface UseRegistrationFormReturnType {
 }
 
 export function useRegistrationForm(
-  initForm?: RegistrationUserForm
+  user?: User
 ): UseRegistrationFormReturnType {
   const isSubmitted = useRef<boolean>(false);
   const initialState = useRef<RegistrationUserForm>({
-    name: initForm?.name || "",
-    about: initForm?.about || "",
-    birthYear: initForm?.birthYear || 0,
-    city: initForm?.city || "",
-    gender: initForm?.gender || "male",
+    name: user?.name || "",
+    about: user?.about || "",
+    birthYear: user ? new Date().getFullYear() - user.age : 0,
+    city: user?.city || "",
+    gender: user?.gender || "male",
   });
 
   const [formState, setFormState] = useState<RegistrationUserForm>(
     initialState.current
   );
-  const [images, setImages] = useState<(File | null)[]>([null, null, null]);
+  const [images, setImages] = useState<(File | string | null)[]>(
+    user ? [user.images[0], user.images[1], user.images[2]] : [null, null, null]
+  );
   const [errors, setErrors] = useState<FormErrors>({});
 
   const handleImageChange = useCallback((index: number, file: File) => {
