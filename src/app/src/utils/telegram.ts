@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
-import { initDataUser, mainButton, User } from "@telegram-apps/sdk-react";
+import {
+  initDataUser,
+  mainButton,
+  popup,
+  User,
+} from "@telegram-apps/sdk-react";
 import { ButtonState } from "../types/telegram-interfaces";
 
 export const useTelegramMainButton = (
@@ -32,4 +37,13 @@ export const getTelegramUserData = (): User => {
     throw new Error("Пользователь не определён");
   }
   return user;
+};
+
+export const showWrongImagesPopup = () => {
+  if (!popup.isOpened())
+    popup.open({
+      title: "Загрузи три фото",
+      message: "asd",
+      buttons: [{ id: "my-id", type: "default", text: "Default text" }],
+    });
 };

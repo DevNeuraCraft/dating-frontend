@@ -1,4 +1,5 @@
 import Icon from "@icons/icons";
+import { postEvent } from "@telegram-apps/sdk-react";
 
 import { IconDefinition } from "@utils/consts";
 
@@ -29,6 +30,11 @@ export default function RadioButton({
     <div
       className="bg-tg-section-bg-color text-tg-text-color py-2.5 flex flex-1 rounded-xl px-4 select-none items-center gap-2.5 cursor-pointer"
       onClick={onChange}
+      onMouseDown={() => {
+        postEvent("web_app_trigger_haptic_feedback", {
+          type: "selection_change",
+        });
+      }}
     >
       <input
         type="radio"

@@ -38,6 +38,8 @@ export const ENDPOINTS = {
         `${API_BACKEND_URL}/${API_ROUTES.USER.BASE}/${API_ROUTES.USER.BY_TG_ID}/${id}`,
       FIND_EXPLORES: (id: string) =>
         `${API_BACKEND_URL}/${API_ROUTES.USER.BASE}/${API_ROUTES.USER.FIND_EXPLORES}/${id}`,
+      UPDATE: (id: string) =>
+        `${API_BACKEND_URL}/${API_ROUTES.USER.BASE}/${id}`,
     },
     SWIPE: {
       BASE: `${API_BACKEND_URL}/${API_ROUTES.SWIPE.BASE}/`,

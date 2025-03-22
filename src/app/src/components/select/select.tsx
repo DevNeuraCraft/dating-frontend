@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 interface SelectProps {
   optionList: string[] | number[];
+  value: string | number;
   defaultOptionTitle: string;
   defaultValue?: string | number;
   name: string;
@@ -14,6 +15,7 @@ export default function Select({
   defaultOptionTitle,
   name,
   defaultValue = "",
+  value,
   onChange,
   error = false,
 }: SelectProps) {
@@ -21,6 +23,7 @@ export default function Select({
     <select
       onChange={onChange}
       name={name}
+      value={value}
       className={clsx(
         "w-full rounded-xl py-2.5 px-4 placeholder:tg-hint-color text-base bg-tg-section-bg-color box-border focus:outline-none text-tg-text-color appearance-none",
         error ? "ring-1 ring-red-500" : ""

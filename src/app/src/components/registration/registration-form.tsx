@@ -15,12 +15,14 @@ interface RegistartionFormProps {
   cities: City[];
   form: UseRegistrationFormReturnType;
   disableToggleBackbutton?: boolean;
+  offcanvasCloseButton?: boolean;
 }
 
 export default function RegistartionForm({
   cities,
   form,
   disableToggleBackbutton = false,
+  offcanvasCloseButton = false,
 }: RegistartionFormProps) {
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState<boolean>(false);
 
@@ -73,10 +75,10 @@ export default function RegistartionForm({
           </div>
           <div className="grid gap-2 mb-7">
             <Select
+              value={form.formState.birthYear}
               onChange={form.handleNumberInputChange}
               name="birthYear"
               defaultOptionTitle="Год рождения"
-              defaultValue={form.formState.birthYear}
               optionList={getYears()}
               error={form.errors.birthYear}
             />
@@ -107,6 +109,7 @@ export default function RegistartionForm({
         </form>
       </div>
       <Offcanvas
+        closeButton={offcanvasCloseButton}
         setCity={form.handleCityChange}
         isOpen={isOffcanvasOpen}
         toggleOpen={toggleOffCanvas}

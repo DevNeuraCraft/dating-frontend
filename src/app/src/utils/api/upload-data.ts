@@ -3,14 +3,16 @@ import { AxiosError } from "axios";
 
 import { RegistrationUserForm } from "../../types/client-interfaces";
 import { UserResponse } from "../../types/data-interfaces";
-import { ENDPOINTS } from "../endpoints";
-import { getTelegramUserData } from "../telegram";
+import { METHODS } from "@utils/endpoints";
+import { getTelegramUserData } from "@utils/telegram";
 
 export const uploadData = async (
+  url: string,
   fromData: RegistrationUserForm,
-  images: File[]
+  images: File[] | string[],
+  method: METHODS.POST | METHODS.PUT
 ): Promise<UserResponse> => {
-  const user = getTelegramUserData()
+  const user = getTelegramUserData();
 
   const formData = new FormData();
 
@@ -25,16 +27,18 @@ export const uploadData = async (
   });
 
   images.forEach((image) => {
-    if (image) {
+    if (image instanceof File) {
       formData.append("images", image);
     }
+    if (typeof image === "string") formData.append("existsImages", image);
   });
 
   try {
-    const response = await axios.post<UserResponse>(
-      ENDPOINTS.BACKEND.USER.BASE,
-      formData
-    );
+    const response = await axios<UserResponse>({
+      url,
+      method,
+      data: formData,
+    });
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {

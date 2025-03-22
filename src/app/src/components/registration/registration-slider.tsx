@@ -7,8 +7,8 @@ import RegistartionForm from "@components/registration/registration-form";
 import MediaForm from "@components/registration/registration-media.form";
 import RegistrationSlideContainter from "@components/registration/registration-slide-container";
 import { swiperRegistrationConfig } from "@/app/src/utils/swiper-configs";
-import { useTelegramMainButton } from "@/app/src/utils/telegram";
-import { backButton, mainButton, popup } from "@telegram-apps/sdk-react";
+import { showWrongImagesPopup, useTelegramMainButton } from "@utils/telegram";
+import { backButton, mainButton } from "@telegram-apps/sdk-react";
 import { City } from "../../types/data-interfaces";
 
 import { uploadData } from "../../utils/api/upload-data";
@@ -18,6 +18,7 @@ import { UseRegistrationFormReturnType } from "@hooks/use-form";
 import { useSwiperInit } from "@hooks/use-swiper-init";
 
 import style from "@components/registration/registration-slider.module.css";
+import { ENDPOINTS, METHODS } from "@utils/endpoints";
 
 interface RegistrationSliderProps {
   cities: City[];
@@ -46,16 +47,16 @@ export default function RegistrationSlider({
 
   const hadleRegister = useCallback(async () => {
     if (!form.validateImages()) {
-      if (!popup.isOpened())
-        popup.open({
-          title: "Загрузи три фото",
-          message: "asd",
-          buttons: [{ id: "my-id", type: "default", text: "Default text" }],
-        });
+      showWrongImagesPopup();
       return;
     }
     try {
-      const { user } = await uploadData(form.formState, form.images as File[]);
+      const { user } = await uploadData(
+        ENDPOINTS.BACKEND.USER.BASE,
+        form.formState,
+        form.images as File[],
+        METHODS.POST
+      );
       setUser(user);
       mainButton.setParams({ isVisible: false });
       router.push(AppRoute.EXPLORE);
@@ -96,7 +97,6 @@ export default function RegistrationSlider({
     return () => {
       mainButton.offClick(handleNext);
       mainButton.offClick(hadleRegister);
-      
     };
   }, [hadleRegister, handleNext, isBeginning]);
 
