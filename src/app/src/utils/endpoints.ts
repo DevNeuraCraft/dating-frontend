@@ -1,32 +1,34 @@
-export const TG_BOT_NAME = "maiuniversity_schedule_bot";
-export const TG_CHANNEL_NAME = "maiuniversity_schedule";
-export const TG_MINI_APP_NAME = "mai_schedule_app";
+export const TG_BOT_NAME = 'maiuniversity_schedule_bot';
+export const TG_CHANNEL_NAME = 'maiuniversity_schedule';
+export const TG_MINI_APP_NAME = 'mai_schedule_app';
 export const API_BACKEND_URL =
-  process.env.API_BACKEND_URL || "http://172.20.10.4:3030/api";
+  process.env.API_BACKEND_URL || 'http://192.168.0.176:3030/api';
 
 export enum METHODS {
-  GET = "GET",
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
 
 export const API_ROUTES = {
-  CITIES: { BASE: "cities" },
+  CITIES: { BASE: 'cities' },
   USER: {
-    BASE: "user",
-    BY_ID: "by-id",
-    BY_TG_ID: "by-tg-id",
-    FIND_EXPLORES: "find-explores",
+    BASE: 'user',
+    BY_ID: 'by-id',
+    BY_TG_ID: 'by-tg-id',
+    FIND_EXPLORES: 'find-explores',
   },
   SWIPE: {
-    BASE: "swipe",
+    BASE: 'swipe',
+    ALL: 'swipes',
   },
 } as const;
 
 export const ENDPOINTS = {
   TG: {
     TMA_LINK: `https://t.me/${TG_BOT_NAME}/${TG_MINI_APP_NAME}/`,
+    CHANNEL_SHORT_LINK: 'https://t.me/soullink_dating',
   },
   BACKEND: {
     CITIES: `${API_BACKEND_URL}/${API_ROUTES.CITIES.BASE}/`,
@@ -42,7 +44,8 @@ export const ENDPOINTS = {
         `${API_BACKEND_URL}/${API_ROUTES.USER.BASE}/${id}`,
     },
     SWIPE: {
-      BASE: `${API_BACKEND_URL}/${API_ROUTES.SWIPE.BASE}/`,
+      BASE: `${API_BACKEND_URL}/${API_ROUTES.SWIPE.BASE}`,
+      ALL: `${API_BACKEND_URL}/${API_ROUTES.SWIPE.ALL}`,
     },
   },
 } as const;

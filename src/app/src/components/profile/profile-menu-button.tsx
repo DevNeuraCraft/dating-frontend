@@ -4,9 +4,9 @@ import Link from "next/link";
 import ProfileMenuButtonIconContainter from "@components/profile/profile-menu-button-icon-container";
 import { IconDefinition as IconType } from "@fortawesome/fontawesome-svg-core";
 import Icon from "@icons/icons";
-import { popup } from "@telegram-apps/sdk-react";
 
 import { IconDefinition } from "@utils/consts";
+import { handleDisabledButtonClick } from "@utils/telegram";
 
 interface ProfileMenuButton {
   href?: string;
@@ -35,13 +35,7 @@ export default function ProfileMenuButton({
       onClick={(event) => {
         if (disabled) {
           event.preventDefault();
-          if (!popup.isOpened()) {
-            popup.open({
-              title: "asd",
-              message: "asd",
-              buttons: [{ id: "asd", text: "asd", type: "default" }],
-            });
-          }
+          handleDisabledButtonClick();
         }
       }}
     >

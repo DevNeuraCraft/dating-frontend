@@ -14,7 +14,7 @@ export default function TelegramProvider({ children }: React.PropsWithChildren) 
     TelegramSDK().then(() => setIsReady(true));
   });
 
-  if (!isReady) return; // Пока SDK загружается, ничего не рендерим
+  if (!isReady) return;
 
   return children;
 }

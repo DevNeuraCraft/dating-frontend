@@ -5,7 +5,7 @@ import ExploreCardDescription from '@components/explore/explore-card-description
 import ExploreCardMediaContainer from '@components/explore/explore-card-media-container';
 
 import { fetchData } from '@utils/api/fetch-data';
-import { ExploreCardButtonType } from '@utils/consts';
+import { SwipeStatus } from '@utils/consts';
 import { ENDPOINTS, METHODS } from '@utils/endpoints';
 
 interface ExploreCardProps {
@@ -30,16 +30,16 @@ export default function ExploreCard({
                                       removeExplore,
                                     }: ExploreCardProps) {
 
-  const removeExploreWithId = useCallback(
-    async (type: ExploreCardButtonType) => {
+  const reactToProfile = useCallback(
+    async (status: SwipeStatus) => {
       if (currentUserId) {
         removeExplore(_id);
         try {
           await fetchData(
             ENDPOINTS.BACKEND.SWIPE.BASE,
-            METHODS.POST,
+            METHODS.PUT,
             {},
-            { swiper_id: currentUserId, swiped_id: _id, swipe_type: type },
+            { swiper_id: _id, swiped_id: currentUserId, status: status },
           );
         } catch (err) {
           console.error(err);
@@ -53,7 +53,7 @@ export default function ExploreCard({
     <div>
       <ExploreCardMediaContainer mediasUrl={images} />
       <ExploreCardDescription name={name} age={age} about={about} city={city} />
-      <ExploreCardButtonContainer removeExplore={removeExploreWithId} />
+      <ExploreCardButtonContainer removeExplore={reactToProfile} />
     </div>
   );
 }

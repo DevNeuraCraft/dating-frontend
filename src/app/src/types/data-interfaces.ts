@@ -1,4 +1,4 @@
-import { ExploreCardButtonType, SwipeStatus } from "@utils/consts";
+import { ExploreCardButtonType, SwipeStatus } from '@utils/consts';
 
 export interface City {
   _id: string;
@@ -16,7 +16,7 @@ export interface User {
   name: string;
   about: string;
   age: number;
-  gender: "male" | "female";
+  gender: 'male' | 'female';
   city: string;
 }
 
@@ -33,7 +33,7 @@ export interface SwipesRespone {
 }
 
 export interface SwipeResponse {
-  swipe: Swipe;
+  swipe: Swipe | null;
 }
 
 export interface UserResponse {

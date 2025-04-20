@@ -1,15 +1,15 @@
-"use client";
-import { useCallback, useEffect, useState } from "react";
+'use client';
+import { useCallback, useEffect, useState } from 'react';
 
-import Loading from "@components/loading/loading";
-import { Swipe, SwipesRespone } from "@app/src/types/data-interfaces";
-import LikesContainer from "./likes-container";
+import Loading from '@components/loading/loading';
+import { Swipe, SwipesRespone } from '@app/src/types/data-interfaces';
+import LikesContainer from './likes-container';
 
-import { fetchData } from "@utils/api/fetch-data";
-import { ENDPOINTS, METHODS } from "@utils/endpoints";
-import userStore from "@store/user-store";
-import LikesLoadingButton from "./likes-loading-button";
-import NoLikes from "./no-likes";
+import { fetchData } from '@utils/api/fetch-data';
+import { ENDPOINTS, METHODS } from '@utils/endpoints';
+import userStore from '@store/user-store';
+import LikesLoadingButton from './likes-loading-button';
+import NoLikes from './no-likes';
 
 export default function Likes() {
   const { user } = userStore();
@@ -27,13 +27,13 @@ export default function Likes() {
         try {
           setLoading(true);
           const { swipes } = await fetchData<SwipesRespone>(
-            ENDPOINTS.BACKEND.SWIPE.BASE,
+            ENDPOINTS.BACKEND.SWIPE.ALL,
             METHODS.GET,
-            { id: user._id, page: page }
+            { id: user._id, page: page },
           );
           setSwipes((prev) => {
             const newSwipes = swipes.filter(
-              (swipe) => !prev.some((p) => p._id === swipe._id)
+              (swipe) => !prev.some((p) => p._id === swipe._id),
             );
             return [...prev, ...newSwipes];
           });
@@ -44,7 +44,7 @@ export default function Likes() {
         }
       }
     },
-    [user]
+    [user],
   );
 
   useEffect(() => {
@@ -53,8 +53,8 @@ export default function Likes() {
 
   if (loading && swipes.length === 0) return <Loading />;
 
-  if (!loading && swipes.length === 0)
-    return <NoLikes/>
+  if (user && !loading && swipes.length === 0)
+    return <NoLikes gender={user.gender} />;
 
   return (
     <div className="grid gap-2 pb-8">

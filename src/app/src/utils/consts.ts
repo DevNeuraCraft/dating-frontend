@@ -1,11 +1,11 @@
-import { faLocationDot } from "@awesome.me/kit-7090d2ba88/icons/classic/light";
+import { faLocationDot } from '@awesome.me/kit-7090d2ba88/icons/classic/light';
 import {
   faCheck,
   faCircle,
   faEllipsis,
   faSliders,
   faXmarkLarge,
-} from "@awesome.me/kit-7090d2ba88/icons/classic/regular";
+} from '@awesome.me/kit-7090d2ba88/icons/classic/regular';
 import {
   faCardsBlank,
   faChevronRight,
@@ -15,38 +15,39 @@ import {
   faHeart,
   faPen,
   faPlus,
-} from "@awesome.me/kit-7090d2ba88/icons/classic/solid";
+} from '@awesome.me/kit-7090d2ba88/icons/classic/solid';
 
 export enum AppRoute {
-  REGISTRATION = "/registration",
-  NOT_FOUND = "/not-found",
-  HEART_BEAT = "/heart-beat/",
-  EXPLORE = "/",
-  PROFILE = "/profile",
-  LIKES = "/likes",
-  EDIT_PROFILE = "/edit",
+  REGISTRATION = '/registration',
+  NOT_FOUND = '/not-found',
+  HEART_BEAT = '/heart-beat/',
+  MATCH = '/match',
+  EXPLORE = '/',
+  PROFILE = '/profile',
+  LIKES = '/likes',
+  EDIT_PROFILE = '/edit',
 }
 
 export enum TabBarButton {
-  PROFILE = "Профиль",
-  EXPLORE = "Встречи",
+  PROFILE = 'Профиль',
+  EXPLORE = 'Встречи',
 }
 
 export enum ProfileMenuButtonTitle {
-  EDIT_PROFILE = "Редактировать профиль",
-  FILTERS = "Фильтры",
-  LIKES = "Лайки",
+  EDIT_PROFILE = 'Редактировать профиль',
+  FILTERS = 'Фильтры',
+  LIKES = 'Лайки',
 }
 
 export enum ExploreCardButtonType {
-  ACCEPT = "accept",
-  REJECT = "reject",
+  ACCEPT = 'accept',
+  REJECT = 'reject',
 }
 
 export enum SwipeStatus {
-  ACCEPTED = "accepted",
-  REJECTED = "rejected",
-  IGNORED = "ignored",
+  ACCEPTED = 'accepted',
+  REJECTED = 'rejected',
+  IGNORED = 'ignored',
 }
 
 export const IconDefinition = {
@@ -64,6 +65,11 @@ export const IconDefinition = {
   LOCATION_DOT: faLocationDot,
   CROSS: faXmarkLarge,
   DOTS: faEllipsis,
+};
+
+export const NO_LIKES_MESSAGES = {
+  male: 'Ты ещё пока никого не лайкнул :(',
+  female: 'Ты ещё пока никого не лайкнула :(',
 };
 
 export const productionMode = true;

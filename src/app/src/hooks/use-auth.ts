@@ -16,14 +16,19 @@ export default function useAuth() {
   const loadUser = useCallback(async () => {
     try {
       const telegramData = getTelegramUserData();
-      if (!telegramData?.id) {
-        throw new Error("Ошибка: Telegram ID не найден");
-      }
-
       const { user } = await fetchData<UserResponse>(
         ENDPOINTS.BACKEND.USER.BY_TG_ID(telegramData.id),
         METHODS.GET
       );
+
+      if (user && user.username !== telegramData.username) {
+        await fetchData(
+          ENDPOINTS.BACKEND.USER.UPDATE(user._id),
+          METHODS.PUT,
+          {},
+          { username: telegramData.username }
+        );
+      }
 
       setUser(user);
     } catch (err) {
@@ -36,16 +41,17 @@ export default function useAuth() {
   useEffect(() => {
     if (loading) return;
 
-    if (productionMode) {
-      if (!user) {
-        router.replace(AppRoute.REGISTRATION); // replace вместо push
-      }
-    } else {
-      router.replace(AppRoute.HEART_BEAT);
+    const redirectRoute = productionMode
+      ? user
+        ? undefined
+        : AppRoute.REGISTRATION
+      : AppRoute.HEART_BEAT;
+
+    if (redirectRoute) {
+      router.replace(redirectRoute);
     }
   }, [loading, user, router]);
 
-  // Загружаем пользователя только если его нет
   useEffect(() => {
     if (!user) {
       loadUser();

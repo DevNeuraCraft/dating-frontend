@@ -1,14 +1,16 @@
-import ExploreCardButton from "@components/explore/explore-card-button";
+import ExploreCardButton from '@components/explore/explore-card-button';
 
-import { ExploreCardButtonType } from "@utils/consts";
+import { ExploreCardButtonType, SwipeStatus } from '@utils/consts';
 
 interface ExploreCardButtonContainerProps {
-  removeExplore: (type: ExploreCardButtonType) => void;
+  altIcon?: boolean;
+  removeExplore: (type: ExploreCardButtonType) => void | (status: SwipeStatus) => void;
 }
 
 export default function ExploreCardButtonContainer({
-  removeExplore,
-}: ExploreCardButtonContainerProps) {
+                                                     removeExplore,
+                                                     altIcon = false,
+                                                   }: ExploreCardButtonContainerProps) {
   return (
     <div className="flex gap-2">
       <ExploreCardButton

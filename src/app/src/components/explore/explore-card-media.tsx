@@ -1,5 +1,5 @@
-import clsx from "clsx";
-import Image from "next/image";
+import clsx from 'clsx';
+import Image from 'next/image';
 
 interface ExploreCardMediaProps {
   mediaUrl: string;
@@ -7,13 +7,13 @@ interface ExploreCardMediaProps {
 }
 
 export default function ExploreCardMedia({
-  mediaUrl,
-  classes,
-}: ExploreCardMediaProps) {
+                                           mediaUrl,
+                                           classes,
+                                         }: ExploreCardMediaProps) {
   return (
-    <div className={clsx(classes, "relative")}>
+    <div className={clsx(classes, 'relative')}>
       <Image
-        className={clsx(classes, "w-full h-full object-cover object-center")}
+        className={clsx(classes, 'w-full h-full object-cover object-center')}
         src={mediaUrl}
         alt="Profile media"
         fill
