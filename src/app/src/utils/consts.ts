@@ -13,6 +13,8 @@ import {
   faCircleChevronUp,
   faCircleUser,
   faHeart,
+  faHeartBroken,
+  faPaperPlane,
   faPen,
   faPlus,
 } from '@awesome.me/kit-7090d2ba88/icons/classic/solid';
@@ -55,6 +57,7 @@ export const IconDefinition = {
   CIRCLE: faCircle,
   PLUS: faPlus,
   HEART: faHeart,
+  BROKEN_HEART: faHeartBroken,
   PROFILE: faCircleUser,
   CARDS: faCardsBlank,
   CHEVRON: faChevronRight,
@@ -65,7 +68,13 @@ export const IconDefinition = {
   LOCATION_DOT: faLocationDot,
   CROSS: faXmarkLarge,
   DOTS: faEllipsis,
+  PLANE: faPaperPlane,
 };
+
+export enum CardButtonType {
+  NEGATIVE = 'NEGATIVE',
+  POSITIVE = 'POSITIVE',
+}
 
 export const NO_LIKES_MESSAGES = {
   male: 'Ты ещё пока никого не лайкнул :(',

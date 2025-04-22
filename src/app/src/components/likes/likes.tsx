@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import Loading from '@components/loading/loading';
-import { Swipe, SwipesRespone } from '@app/src/types/data-interfaces';
+import { Swipe, SwipesResponse } from '@app/src/types/data-interfaces';
 import LikesContainer from './likes-container';
 
 import { fetchData } from '@utils/api/fetch-data';
@@ -26,7 +26,7 @@ export default function Likes() {
       if (user) {
         try {
           setLoading(true);
-          const { swipes } = await fetchData<SwipesRespone>(
+          const { swipes } = await fetchData<SwipesResponse>(
             ENDPOINTS.BACKEND.SWIPE.ALL,
             METHODS.GET,
             { id: user._id, page: page },

@@ -1,26 +1,40 @@
-import ExploreCardButton from '@components/explore/explore-card-button';
-
-import { ExploreCardButtonType, SwipeStatus } from '@utils/consts';
+import { CardButtonType, ExploreCardButtonType, IconDefinition } from '@utils/consts';
+import CardButton from '@components/buttons/card-button';
 
 interface ExploreCardButtonContainerProps {
-  altIcon?: boolean;
-  removeExplore: (type: ExploreCardButtonType) => void | (status: SwipeStatus) => void;
+  removeExplore: (type: ExploreCardButtonType) => void;
 }
 
 export default function ExploreCardButtonContainer({
                                                      removeExplore,
-                                                     altIcon = false,
                                                    }: ExploreCardButtonContainerProps) {
+
+  const buttons = [
+    {
+      swipeType: ExploreCardButtonType.REJECT,
+      type: CardButtonType.NEGATIVE,
+      icon: IconDefinition.CROSS,
+    },
+    {
+      swipeType: ExploreCardButtonType.ACCEPT,
+      type: CardButtonType.POSITIVE,
+      icon: IconDefinition.CHECK,
+    },
+  ];
+
   return (
     <div className="flex gap-2">
-      <ExploreCardButton
-        type={ExploreCardButtonType.REJECT}
-        removeExplore={removeExplore}
-      />
-      <ExploreCardButton
-        type={ExploreCardButtonType.ACCEPT}
-        removeExplore={removeExplore}
-      />
+      {buttons.map(button => (
+        <CardButton
+          key={button.swipeType}
+          onClick={() => {
+            removeExplore(button.swipeType);
+          }}
+          type={button.type}
+          icon={button.icon}
+        />
+      ))}
+
     </div>
   );
 }

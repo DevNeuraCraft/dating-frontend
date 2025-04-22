@@ -28,7 +28,7 @@ export interface Swipe {
   status: SwipeStatus;
 }
 
-export interface SwipesRespone {
+export interface SwipesResponse {
   swipes: Swipe[];
 }
 
@@ -48,5 +48,5 @@ export type BackendTypes =
   | City
   | UserResponse
   | ExploresResponse
-  | SwipesRespone
+  | SwipesResponse
   | SwipeResponse;

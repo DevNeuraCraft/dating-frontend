@@ -1,5 +1,5 @@
-export const TG_BOT_NAME = 'maiuniversity_schedule_bot';
-export const TG_CHANNEL_NAME = 'maiuniversity_schedule';
+export const TG_BOT_NAME = 'soul_link_app_bot';
+export const TG_CHANNEL_NAME = 'soullink_dating';
 export const TG_MINI_APP_NAME = 'mai_schedule_app';
 export const API_BACKEND_URL =
   process.env.API_BACKEND_URL || 'http://192.168.0.176:3030/api';
@@ -28,7 +28,9 @@ export const API_ROUTES = {
 export const ENDPOINTS = {
   TG: {
     TMA_LINK: `https://t.me/${TG_BOT_NAME}/${TG_MINI_APP_NAME}/`,
-    CHANNEL_SHORT_LINK: 'https://t.me/soullink_dating',
+    CHANNEL_SHORT_LINK: TG_CHANNEL_NAME,
+    USER_CHAT: (userName: string) => `https://t.me/${userName}`,
+
   },
   BACKEND: {
     CITIES: `${API_BACKEND_URL}/${API_ROUTES.CITIES.BASE}/`,

@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { ENDPOINTS, METHODS } from '@utils/endpoints';
 import { fetchData } from '@utils/api/fetch-data';
 import Loading from '@components/loading/loading';
+import MathCard from '@components/match/match-card';
 
 export default function Match() {
   const { user } = userStore();
@@ -30,9 +31,10 @@ export default function Match() {
     })();
   }, [swiperId, user]);
 
-  if (!swipe && !loading) {
+  if (!user || !swipe || loading) {
     return <Loading />;
   }
 
-  return <div><p>{JSON.stringify(swipe)}</p></div>;
+  return <MathCard currentUserId={user._id} {...swipe.swiper_id} status={swipe.status}
+                   username={swipe.swiper_id.username} />;
 }
