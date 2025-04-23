@@ -1,24 +1,24 @@
-import { useRef, useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { Swiper as SwiperType } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Swiper as SwiperType } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import RegistartionForm from "@components/registration/registration-form";
-import MediaForm from "@components/registration/registration-media.form";
-import RegistrationSlideContainter from "@components/registration/registration-slide-container";
-import { swiperRegistrationConfig } from "@/app/src/utils/swiper-configs";
-import { showWrongImagesPopup, useTelegramMainButton } from "@utils/telegram";
-import { backButton, mainButton } from "@telegram-apps/sdk-react";
-import { City } from "../../types/data-interfaces";
+import RegistartionForm from '@components/registration/registration-form';
+import MediaForm from '@components/registration/registration-media.form';
+import RegistrationSlideContainter from '@components/registration/registration-slide-container';
+import { swiperRegistrationConfig } from '@/app/src/utils/swiper-configs';
+import { showWrongImagesPopup, useTelegramMainButton } from '@utils/telegram';
+import { backButton, mainButton } from '@telegram-apps/sdk-react';
+import { City } from '../../types/data-interfaces';
 
-import { uploadData } from "../../utils/api/upload-data";
-import { AppRoute } from "@utils/consts";
-import userStore from "@store/user-store";
-import { UseRegistrationFormReturnType } from "@hooks/use-form";
-import { useSwiperInit } from "@hooks/use-swiper-init";
+import { uploadData } from '../../utils/api/upload-data';
+import { AppRoute } from '@utils/consts';
+import userStore from '@store/user-store';
+import { UseRegistrationFormReturnType } from '@hooks/use-form';
+import { useSwiperInit } from '@hooks/use-swiper-init';
 
-import style from "@components/registration/registration-slider.module.css";
-import { ENDPOINTS, METHODS } from "@utils/endpoints";
+import style from '@components/registration/registration-slider.module.css';
+import { ENDPOINTS, METHODS } from '@utils/endpoints';
 
 interface RegistrationSliderProps {
   cities: City[];
@@ -26,12 +26,12 @@ interface RegistrationSliderProps {
 }
 
 export default function RegistrationSlider({
-  cities,
-  form,
-}: RegistrationSliderProps) {
+                                             cities,
+                                             form,
+                                           }: RegistrationSliderProps) {
   const router = useRouter();
   const { setUser } = userStore();
-  useTelegramMainButton({ isVisible: true, text: "Продолжить" });
+  useTelegramMainButton({ isVisible: true, text: 'Продолжить' });
 
   const swiperRef = useRef<SwiperType | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
@@ -55,7 +55,7 @@ export default function RegistrationSlider({
         ENDPOINTS.BACKEND.USER.BASE,
         form.formState,
         form.images as File[],
-        METHODS.POST
+        METHODS.POST,
       );
       setUser(user);
       mainButton.setParams({ isVisible: false });
@@ -119,7 +119,7 @@ export default function RegistrationSlider({
           setIsEnd(swiper.isEnd);
         }}
       >
-        <SwiperSlide className="h-auto">
+        <SwiperSlide className="h-screen">
           <RegistrationSlideContainter title="Создание профиля">
             <RegistartionForm cities={cities} form={form} />
           </RegistrationSlideContainter>
