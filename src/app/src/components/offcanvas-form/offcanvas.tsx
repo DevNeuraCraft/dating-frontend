@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import FormInput from "@components/input/form-input";
-import OffcanvasItemList from "@components/offcanvas-form/offcanvas-item-list";
-import { City } from "../../types/data-interfaces";
-import Icon from "@components/icons/icons";
-import { IconDefinition } from "@utils/consts";
-import { postEvent } from "@telegram-apps/sdk-react";
+import FormInput from '@components/input/form-input';
+import OffcanvasItemList from '@components/offcanvas-form/offcanvas-item-list';
+import { City } from '../../types/data-interfaces';
+import Icon from '@components/icons/icons';
+import { IconDefinition } from '@utils/consts';
+import { postEvent } from '@telegram-apps/sdk-react';
 
 interface OffcanvasProps {
   isOpen: boolean;
@@ -16,15 +16,15 @@ interface OffcanvasProps {
 }
 
 export default function Offcanvas({
-  isOpen,
-  toggleOpen,
-  cities,
-  setCity,
-  closeButton = false,
-}: OffcanvasProps) {
+                                    isOpen,
+                                    toggleOpen,
+                                    cities,
+                                    setCity,
+                                    closeButton = false,
+                                  }: OffcanvasProps) {
   const offcanvasRef = useRef<HTMLDivElement>(null);
 
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>('');
   const [filteredCities, setFilteredCities] = useState<City[]>(cities);
 
   // Обработчик выбора города
@@ -33,7 +33,7 @@ export default function Offcanvas({
       toggleOpen();
       setCity(city);
     },
-    [setCity, toggleOpen]
+    [setCity, toggleOpen],
   );
 
   // Обновление отфильтрованных городов при изменении списка городов
@@ -47,7 +47,7 @@ export default function Offcanvas({
     setSearchValue(e.target.value);
 
     const filtered = cities.filter((city) =>
-      city.name.toLowerCase().includes(value)
+      city.name.toLowerCase().includes(value),
     );
     setFilteredCities(filtered);
   };
@@ -56,13 +56,13 @@ export default function Offcanvas({
   useEffect(() => {
     if (offcanvasRef.current) {
       if (isOpen) {
-        offcanvasRef.current.style.visibility = "visible";
-        offcanvasRef.current.style.opacity = "1";
+        offcanvasRef.current.style.visibility = 'visible';
+        offcanvasRef.current.style.opacity = '1';
       } else {
-        offcanvasRef.current.style.opacity = "0";
+        offcanvasRef.current.style.opacity = '0';
         setTimeout(() => {
           if (offcanvasRef.current) {
-            offcanvasRef.current.style.visibility = "hidden";
+            offcanvasRef.current.style.visibility = 'hidden';
           }
         }, 300);
       }
@@ -73,7 +73,7 @@ export default function Offcanvas({
     <div
       ref={offcanvasRef}
       className="fixed inset-0 z-50 bg-tg-secondary-bg-color transition-opacity duration-300 p-2"
-      style={{ visibility: "hidden", opacity: 0 }}
+      style={{ visibility: 'hidden', opacity: 0 }}
     >
       {closeButton && (
         <div className="flex justify-end px-1.5">
@@ -82,21 +82,21 @@ export default function Offcanvas({
               toggleOpen();
             }}
             onMouseDown={() => {
-              postEvent("web_app_trigger_haptic_feedback", {
-                type: "selection_change",
+              postEvent('web_app_trigger_haptic_feedback', {
+                type: 'selection_change',
               });
             }}
           >
             {Icon({
               iconDefinition: IconDefinition.CROSS,
               classes:
-                "text-white bg-tg-subtitle-text-color rounded-full h-3 w-3 p-1",
+                'text-white bg-tg-subtitle-text-color rounded-full h-3 w-3 p-1',
             })}
           </div>
         </div>
       )}
 
-      <div className="pt-4">
+      <div className="pt-4 h-full">
         <FormInput
           name="search"
           placeholder="Поиск"
