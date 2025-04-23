@@ -1,5 +1,5 @@
-import OffcanvasItem from "./offcanvas-item";
-import { City } from "../../types/data-interfaces";
+import OffcanvasItem from './offcanvas-item';
+import { City } from '../../types/data-interfaces';
 
 interface OffcanvasItemListProps {
   cities: City[];
@@ -7,11 +7,11 @@ interface OffcanvasItemListProps {
 }
 
 export default function OffcanvasItemList({
-  cities,
-  setCity,
-}: OffcanvasItemListProps) {
+                                            cities,
+                                            setCity,
+                                          }: OffcanvasItemListProps) {
   return (
-    <div className="flex flex-col gap-1 mt-5">
+    <div className="flex flex-col gap-1 mt-5 max-h-[calc(100vh-30vh)] overflow-y-auto">
       {cities.map((city) => (
         <OffcanvasItem
           key={city._id}
