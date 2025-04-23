@@ -11,7 +11,7 @@ export default function OffcanvasItemList({
                                             setCity,
                                           }: OffcanvasItemListProps) {
   return (
-    <div className="flex flex-col gap-1 mt-5 mb-7 h-[95vh] overflow-y-auto">
+    <div className="flex flex-col gap-1 mt-5 mb-20 h-[95vh] overflow-y-auto">
       {cities.map((city) => (
         <OffcanvasItem
           key={city._id}
