@@ -1,3 +1,4 @@
+'use client';
 import { useRouter, useSearchParams } from 'next/navigation';
 import userStore from '@store/user-store';
 import { AppRoute } from '@utils/consts';

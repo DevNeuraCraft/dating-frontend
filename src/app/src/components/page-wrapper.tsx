@@ -36,7 +36,7 @@ export default function PageWrapper({
     return () => {
       backButton.offClick(handleBack);
     };
-  }, [back, router]);
+  }, [back, forceBack, router]);
 
   return (
     <main>
