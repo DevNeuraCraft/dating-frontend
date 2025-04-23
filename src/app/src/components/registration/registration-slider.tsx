@@ -119,7 +119,7 @@ export default function RegistrationSlider({
           setIsEnd(swiper.isEnd);
         }}
       >
-        <SwiperSlide className="h-screen">
+        <SwiperSlide className="h-[95vh]">
           <RegistrationSlideContainter title="Создание профиля">
             <RegistartionForm cities={cities} form={form} />
           </RegistrationSlideContainter>

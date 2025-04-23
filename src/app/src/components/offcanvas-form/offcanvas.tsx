@@ -96,7 +96,7 @@ export default function Offcanvas({
         </div>
       )}
 
-      <div className="pt-4 h-full">
+      <div className="pt-4">
         <FormInput
           name="search"
           placeholder="Поиск"
