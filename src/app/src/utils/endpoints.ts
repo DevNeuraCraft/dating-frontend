@@ -27,7 +27,7 @@ export const API_ROUTES = {
 export const ENDPOINTS = {
   TG: {
     TMA_LINK: `https://t.me/${TG_BOT_NAME}/${TG_MINI_APP_NAME}/`,
-    CHANNEL_SHORT_LINK: TG_CHANNEL_NAME,
+    CHANNEL_SHORT_LINK: `/${TG_CHANNEL_NAME}`,
   },
   BACKEND: {
     CITIES: `${API_BACKEND_URL}/${API_ROUTES.CITIES.BASE}/`,

@@ -16,6 +16,7 @@ export default function ExploreCardMedia({
         className={clsx(classes, 'w-full h-full object-cover object-center')}
         src={mediaUrl}
         alt="Profile media"
+        unoptimized={true}
         fill
       />
     </div>

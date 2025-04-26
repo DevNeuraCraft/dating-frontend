@@ -13,6 +13,7 @@ export default function ProfileImageSlide({
       alt="Profile image"
       fill
       className="object-cover rounded-t-xl"
+      unoptimized={true}
     />
   );
 }
