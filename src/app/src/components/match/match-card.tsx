@@ -56,9 +56,8 @@ export default function MathCard({
   );
 
   const handleContact = () => {
-    console.log(ENDPOINTS.TG.USER_CHAT(username || ''));
     postEvent('web_app_open_tg_link', {
-      path_full: username || '',
+      path_full: `/${username}` || '',
     });
   };
 
